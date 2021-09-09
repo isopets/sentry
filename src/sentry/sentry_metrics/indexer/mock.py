@@ -1,24 +1,14 @@
 from typing import Optional
 
-from sentry.models import Organization
+from django.conf import settings
+
+from sentry.utils.redis import redis_clusters
 
 from .base import StringIndexer, UseCase
 
-_STRINGS = {
-    "abnormal": 0,
-    "crashed": 1,
-    "environment": 2,
-    "errored": 3,
-    "healthy": 4,
-    "production": 5,
-    "release": 6,
-    "session.duration": 7,
-    "session.status": 8,
-    "session": 9,
-    "staging": 10,
-    "user": 11,
-}
-_REVERSE = {v: k for k, v in _STRINGS.items()}
+
+def get_client():
+    return redis_clusters.get(settings.SENTRY_METRICS_INDEXER_REDIS_CLUSTER)
 
 
 class MockIndexer(StringIndexer):
@@ -26,26 +16,29 @@ class MockIndexer(StringIndexer):
     Mock string indexer
     """
 
-    def record(self, organization: Organization, use_case: UseCase, string: str) -> int:
-        """Mock indexer cannot record."""
-        raise NotImplementedError()
+    def record(self, org_id: str, use_case: UseCase, string: str) -> int:
+        """
+        If key already exists, grab that value, otherwise record both the
+        string to int and int to string relationships.
+        """
+        client = get_client()
 
-    def resolve(self, organization: Organization, use_case: UseCase, string: str) -> Optional[int]:
+        string_key = f"temp-metrics-indexer:{org_id}:1:str:{string}"
+        value = client.get(string_key)
+        if value is None:
+            value: int = abs(hash(string)) % (10 ** 8)
+            client.set(string_key, value)
+
+            # reverse record (int to string)
+            int_key = f"temp-metrics-indexer:{org_id}:1:int:{value}"
+            client.set(int_key, string)
+
+        return int(value)
+
+    def reverse_resolve(self, org_id: str, use_case: UseCase, id: int) -> Optional[str]:
         # NOTE: Ignores ``use_case`` for simplicity.
-        # return _STRINGS.get(string)
 
-        import random
+        client = get_client()
+        key = f"temp-metrics-indexer:{org_id}:1:int:{id}"
 
-        try:
-            resolved = _STRINGS[string]
-        except KeyError:
-            # just generating a random number for now
-            resolved = random.randint(20, 100)
-
-        return resolved
-
-    def reverse_resolve(
-        self, organization: Organization, use_case: UseCase, id: int
-    ) -> Optional[str]:
-        # NOTE: Ignores ``use_case`` for simplicity.
-        return _REVERSE.get(id)
+        return client.get(key)
