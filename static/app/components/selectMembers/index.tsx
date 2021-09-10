@@ -175,7 +175,7 @@ class SelectMembers extends React.Component<Props, State> {
       ...this.createMentionableTeam(team),
       disabled: true,
       label: (
-        <UnmentionableTeam>
+        <UnmentionableTeamWrapper>
           <DisabledLabel>
             <Tooltip
               position="left"
@@ -200,7 +200,7 @@ class SelectMembers extends React.Component<Props, State> {
               icon={<IconAdd isCircled />}
             />
           </Tooltip>
-        </UnmentionableTeam>
+        </UnmentionableTeamWrapper>
       ),
     };
   };
@@ -413,7 +413,7 @@ const AddToProjectButton = styled(Button)`
   flex-shrink: 0;
 `;
 
-const UnmentionableTeam = styled('div')`
+const UnmentionableTeamWrapper = styled('div')`
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
