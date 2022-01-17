@@ -88,7 +88,7 @@
     "less": "^3.12.2",
     "less-loader": "^10.0.1",
     "lodash": "^4.17.19",
-    "marked": "0.7.0",
+    "marked": "4.0.10",
     "mini-css-extract-plugin": "^2.0.0",
     "mobx": "^6.3.2",
     "mobx-react": "~7.2.0",
