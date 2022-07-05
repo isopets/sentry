@@ -10,7 +10,7 @@ dataclasses==0.8; python_version <= '3.6'
 datadog==0.29.3
 django-crispy-forms==1.8.1
 django-picklefield==2.1.0
-Django==2.2.24
+Django==3.2.14
 djangorestframework==3.11.2
 email-reply-parser==0.5.12
 google-api-core==1.25.1
@@ -26,7 +26,7 @@ google-crc32c==1.1.2; python_version == '3.8'
 jsonschema==3.2.0
 lxml==4.6.3
 maxminddb==2.0.3
-mistune==0.8.4
+mistune==2.0.3
 mmh3==3.0.0
 parsimonious==0.8.0
 petname==2.6
