@@ -57,7 +57,7 @@
     "@types/scroll-to-element": "^2.0.1",
     "@types/webpack-dev-server": "^3.11.4",
     "ansicolor": "^1.1.95",
-    "babel-loader": "^8.1.0",
+    "babel-loader": "^8.2.4",
     "babel-plugin-add-react-displayname": "^0.0.5",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "buffer": "^6.0.3",
