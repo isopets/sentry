@@ -1,4 +1,4 @@
-FROM python:3.6.13-slim-buster as sdist
+FROM python:3.12.0b1-slim-buster as sdist
 
 LABEL maintainer="oss@sentry.io"
 LABEL org.opencontainers.image.title="Sentry Wheel Builder"
