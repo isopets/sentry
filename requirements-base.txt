@@ -64,7 +64,7 @@ toronado==0.1.0
 ua-parser==0.10.0
 unidiff==0.6.0
 urllib3==1.24.2
-uWSGI==2.0.19.1
+uWSGI==2.0.22.1
 zstandard==0.14.1
 
 msgpack==1.0.0
