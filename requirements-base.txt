@@ -69,7 +69,7 @@ zstandard==0.14.1
 
 msgpack==1.0.0
 # for encrypting stored user credentials
-cryptography==3.3.2
+cryptography==42.0.8
 # celery
 billiard==3.6.3
 kombu==4.6.11
