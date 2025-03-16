@@ -7,7 +7,7 @@
     "url": "git://github.com/getsentry/sentry.git"
   },
   "dependencies": {
-    "@babel/core": "~7.15.5",
+    "@babel/core": "~7.26.10",
     "@babel/plugin-proposal-decorators": "~7.15.4",
     "@babel/plugin-transform-react-jsx": "^7.14.9",
     "@babel/plugin-transform-runtime": "~7.15.0",
@@ -29,8 +29,8 @@
     "@sentry/rrweb": "^0.3.1",
     "@sentry/tracing": "6.12.0-beta.2",
     "@sentry/utils": "6.12.0-beta.2",
-    "@testing-library/jest-dom": "^5.14.1",
-    "@testing-library/react": "^12.0.0",
+    "@testing-library/jest-dom": "^5.16.0",
+    "@testing-library/react": "^14.0.0",
     "@types/color": "^3.0.2",
     "@types/compression-webpack-plugin": "^6.0.5",
     "@types/css-minimizer-webpack-plugin": "^3.0.1",
