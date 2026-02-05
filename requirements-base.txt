@@ -10,7 +10,7 @@ dataclasses==0.8; python_version <= '3.6'
 datadog==0.29.3
 django-crispy-forms==1.8.1
 django-picklefield==2.1.0
-Django==2.2.24
+Django==4.2.28
 djangorestframework==3.11.2
 email-reply-parser==0.5.12
 google-api-core==1.25.1
@@ -100,3 +100,4 @@ sqlparse==0.2.4
 # We're still using mock in Python 3.6 because it contains a fix to Python issue37972.
 # We should be able to fully swap it out for stdlib once we're on 3.8.
 mock==4.0.3
+protobuf>=6.33.5 # not directly required, pinned by Snyk to avoid a vulnerability
